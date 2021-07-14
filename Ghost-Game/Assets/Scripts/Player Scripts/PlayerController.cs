@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour {
     public float fallVelocity;
     public float jumpForce;
     public bool playerCanMove = true;
+    public string mobility = "2D";
     
     //Variables movimiento relativo a camara
     public Camera mainCamera;
@@ -45,10 +46,21 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
+
+
         horizontalMove = Input.GetAxis(Axis.HORIZONTAL_AXIS);
         verticalMove = Input.GetAxis(Axis.VERTICAL_AXIS);
 
-        playerInput = new Vector3(horizontalMove,0,verticalMove); // los almacenamos en Vector3
+        if(mobility == "2D") {
+            // Jugabilidad 2D
+            playerInput = new Vector3(horizontalMove,0,0); // los almacenamos en Vector3
+
+        } else {
+
+            // Jugabilidad 3D
+            playerInput = new Vector3(horizontalMove,0,verticalMove); // los almacenamos en Vector3
+        }
+
         playerInput = Vector3.ClampMagnitude(playerInput, 1); // Y limitamos su magnitud a 1 para evitar acelerones en movimientos diagonales
 
         playerAnimatorController.SetFloat(AnimationTags.WALK_VELOCITY, playerInput.magnitude * playerSpeed);
@@ -78,12 +90,13 @@ public class PlayerController : MonoBehaviour {
         player.transform.LookAt(player.transform.position + movePlayer); // asignamos hacia donde va a mirar el jugador
 
         //classic 2d movement 
-        //direction = player.transform.position + new Vector3(0,0, horizontalMove); //classic 2d movement
-        //player.transform.LookAt(direction);
+        // direction = player.transform.position + new Vector3(0,0, horizontalMove); //classic 2d movement
+        // player.transform.LookAt(direction);
 
         SetGravity();  //Iniciamos Gravedad
         
-        PLayerSkills(); //Iniciamos las skills
+        PlayerSkills(); //Iniciamos las skills
+        PlayerMobility(); //Iniciamos la jugabilidad entre 3D y 2D
 
         player.Move(movePlayer * Time.deltaTime); // iniciamos el movimiento del player
 
@@ -107,7 +120,18 @@ public class PlayerController : MonoBehaviour {
     }
 
     //Funcion para las habilidades de nuestro jugador
-    public void PLayerSkills() {
+    public void PlayerMobility() {
+
+        //Si estamos tocando el suelo y pulsamos el boton "Jump"
+        if (player.isGrounded && Input.GetKeyDown(KeyCode.F1)) {
+
+            if (mobility == "2D") mobility = "3D"; 
+            else  mobility = "2D";
+        }
+
+    }
+    //Funcion para las habilidades de nuestro jugador
+    public void PlayerSkills() {
 
         //Si estamos tocando el suelo y pulsamos el boton "Jump"
         if (player.isGrounded && Input.GetKeyDown(KeyCode.Space)) {

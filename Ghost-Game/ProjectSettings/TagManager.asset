@@ -12,6 +12,7 @@ TagManager:
   - Kick1Tag
   - Kick2Tag
   - PlayerJumpKickTag
+  - MainCamera2
   layers:
   - Default
   - TransparentFX

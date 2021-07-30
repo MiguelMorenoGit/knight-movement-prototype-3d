@@ -46,6 +46,11 @@ public class PlayerAttack : MonoBehaviour
     }
 
     void ComboAttacks(){
+        // Throw Spear
+        if (player.isGrounded && Input.GetKeyDown(KeyCode.C)) {
+
+            player_Anim.Throw_Spear_Animation_Start();
+        }
         // JumpKick
         if (!player.isGrounded && Input.GetKeyDown(KeyCode.X)) {
 

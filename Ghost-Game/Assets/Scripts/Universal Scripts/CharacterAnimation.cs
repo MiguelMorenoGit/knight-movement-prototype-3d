@@ -5,10 +5,12 @@ using UnityEngine;
 public class CharacterAnimation : MonoBehaviour {
 
     private Animator anim;
+    private Rigidbody Spear;
 
     void Awake() {
 
         anim = GetComponent<Animator>();
+        Spear = GetComponentInChildren<Rigidbody>();
         
     }
 
@@ -41,7 +43,18 @@ public class CharacterAnimation : MonoBehaviour {
         anim.SetTrigger(AnimationTags.KICK_2_TRIGGER);
     }
     public void Kick_Jump() {
+        
         anim.SetTrigger(AnimationTags.KICK_JUMP_TRIGGER);
+    }
+
+    // Arms
+    public void Throw_Spear_Animation_Start() {
+        anim.SetTrigger(AnimationTags.THROW_SPEAR);
+    }
+    public void Throw_Spear() {
+        Spear.isKinematic = false;
+        Spear.transform.parent = null;
+        Spear.AddForce(transform.forward * 20,ForceMode.Impulse);
     }
 
     //  ENEMY ANIMATIONS

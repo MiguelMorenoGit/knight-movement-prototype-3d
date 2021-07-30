@@ -13,6 +13,7 @@ TagManager:
   - Kick2Tag
   - PlayerJumpKickTag
   - MainCamera2
+  - SpearTag
   layers:
   - Default
   - TransparentFX
@@ -26,7 +27,7 @@ TagManager:
   - 
   - Player
   - Enemy
-  - 
+  - Spear
   - 
   - 
   - 

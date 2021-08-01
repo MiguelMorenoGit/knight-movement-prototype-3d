@@ -13,7 +13,8 @@ public class Spear : MonoBehaviour
 
     public Transform player, containerRepose, containerAttack;
 
-    public bool equiped;
+    public bool equiped = false;
+    public bool throwed = false;
     // public static bool slotFull;
 
     // Start is called before the first frame update
@@ -37,6 +38,14 @@ public class Spear : MonoBehaviour
 
             onRepose();
         }
+        // if ( !throwed && Input.GetKey(KeyCode.C) ) {
+        //     Debug.Log("Spear Throwed" );
+
+        //     onThrow();
+        // }
+        // if(throwed) {
+        //     setSpearThrowRotation();
+        // }
 
         // getPosition();
     }
@@ -79,8 +88,8 @@ public class Spear : MonoBehaviour
         //Make RigidBody kinematic and BoxCollider a trigger
         // rb.isKinematic = false;
         // coll.isTrigger = false;
-
         equiped = false;
+
     }
 
     void onAttack() {
@@ -93,10 +102,30 @@ public class Spear : MonoBehaviour
         transform.localRotation = Quaternion.Euler(Vector3.zero);
         transform.localScale = Vector3.one;
 
+
         //Make RigidBody kinematic and BoxCollider a trigger
         // rb.isKinematic = true;
         // coll.isTrigger = true;
 
         equiped = true;
     }
+
+    // void onThrow(){
+
+    //     transform.SetParent(containerAttack);
+    //     // transform.position = new Vector3(0,0,0);
+    //     // transform.localRotation = Quaternion.Euler(new Vector3(0,0,0));
+    //     // transform.localScale = Vector3.one;
+    //     throwed = true;
+
+    //     // Instantiate(this);
+    
+
+    // }
+
+    // void setSpearThrowRotation() {
+
+        
+
+    // }
 }

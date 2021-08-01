@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour {
 
         playerInput = Vector3.ClampMagnitude(playerInput, 1); // Y limitamos su magnitud a 1 para evitar acelerones en movimientos diagonales
 
-        playerAnimatorController.SetFloat(AnimationTags.WALK_VELOCITY, playerInput.magnitude * playerSpeed);
+        playerAnimatorController.SetFloat(AnimationParameters.WALK_VELOCITY, playerInput.magnitude * playerSpeed);
         //Decimos en que direccion mirara el personaje
         CamDirection();
 
@@ -139,7 +139,7 @@ public class PlayerController : MonoBehaviour {
             fallVelocity = jumpForce;
             movePlayer.y = fallVelocity;
 
-            playerAnimatorController.SetTrigger(AnimationTags.JUMP_TRIGGER);
+            playerAnimatorController.SetTrigger(AnimationParameters.JUMP_TRIGGER);
         }
 
     }
@@ -158,7 +158,7 @@ public class PlayerController : MonoBehaviour {
 
             fallVelocity -= gravity * Time.deltaTime;
             movePlayer.y = fallVelocity;
-            playerAnimatorController.SetFloat(AnimationTags.VERTICAL_VELOCITY, player.velocity.y);
+            playerAnimatorController.SetFloat(AnimationParameters.VERTICAL_VELOCITY, player.velocity.y);
         }
 
         // SlideDown(); T0DO hacer que funcione bien cuando estas frente a un angulo recto(pared,escalones etc)

@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimationTags {
+// A constant list of AnimationParameters, Axis and Tags
+// when you create someone of these elements at Unity remember write it here too
 
+public class AnimationParameters {
+
+    
     public const string MOVEMENT = "Movement";
     public const string MOVEMENT_GUARD = "MovementGuard";
     public const string WALK_VELOCITY = "PlayerWalkVelocity";

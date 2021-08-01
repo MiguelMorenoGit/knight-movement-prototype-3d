@@ -1,11 +1,15 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterAnimationDelegate : MonoBehaviour {
 
-    public GameObject Punch_1_Attack_Point,Punch_2_Attack_Point,Punch_3_Attack_Point, 
-    Kick_1_Attack_Point, Kick_2_Attack_Point, Jump_Kick_Attack_Point;
+    public GameObject Punch_1_Attack_Point;
+    public GameObject Punch_2_Attack_Point;
+    public GameObject Punch_3_Attack_Point; 
+    public GameObject Kick_1_Attack_Point; 
+    public GameObject Kick_2_Attack_Point; 
+    public GameObject Jump_Kick_Attack_Point;
 
     public float stand_Up_Timer = 2f;
 
@@ -71,6 +75,8 @@ public class CharacterAnimationDelegate : MonoBehaviour {
         }
     }
 
+    //  WEAPONS
+    
 
     void Enemy_StandUp() {
         StartCoroutine(StandUpAfterTime());

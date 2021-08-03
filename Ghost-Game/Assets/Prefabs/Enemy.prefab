@@ -190,6 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 667ac8c972049244fbd5e5f57e42959f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Spear: {fileID: 0}
 --- !u!1 &8267805231029037899
 GameObject:
   m_ObjectHideFlags: 0
@@ -959,6 +960,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1471,6 +1473,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1982,6 +1985,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1.6
   attack_Distance: 1.2
+  followPlayer: 0
 --- !u!1 &8267805232511146164
 GameObject:
   m_ObjectHideFlags: 0

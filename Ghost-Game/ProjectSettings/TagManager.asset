@@ -14,6 +14,7 @@ TagManager:
   - PlayerJumpKickTag
   - MainCamera2
   - SpearTag
+  - SpearLaunchPosition
   layers:
   - Default
   - TransparentFX

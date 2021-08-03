@@ -11,6 +11,9 @@ public class HealthScript : MonoBehaviour {
     // PRIVATE
     private CharacterAnimation animationScript;
     private EnemyMovement enemyMovement;
+    private Rigidbody rb;
+    public Collider CapsuleCollider;
+    public BoxCollider BoxCollider;
 
     public bool characterDied; // prueba
     public bool characterKnockdown; // prueba
@@ -20,6 +23,8 @@ public class HealthScript : MonoBehaviour {
 
         animationScript = GetComponentInChildren<CharacterAnimation>();
         enemyMovement = GetComponent<EnemyMovement>();
+        CapsuleCollider = GetComponent<Collider>();
+        BoxCollider = GetComponentInChildren<BoxCollider>();
     }
 
     public void ApplyDamage(float damage, bool knockDown) {
@@ -36,10 +41,16 @@ public class HealthScript : MonoBehaviour {
             animationScript.Death();
             characterDied = true;
             enemyMovement.enabled= false;
+            CapsuleCollider.enabled = false;
+            BoxCollider.size = new Vector3(0.3f,0.2f,0.3f);
+            rb.constraints = RigidbodyConstraints.FreezePosition;
 
             // if is player deactivate enemy script
             if(is_Player) {
 
+            } else {
+                CapsuleCollider.enabled = false;
+                
             }
 
             return;

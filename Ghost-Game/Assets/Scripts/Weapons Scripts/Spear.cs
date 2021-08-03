@@ -5,13 +5,15 @@ using UnityEngine;
 public class Spear : MonoBehaviour
 {
 
-    public  Rigidbody rb; 
-    public  BoxCollider coll;
+    private  Rigidbody RB; 
+    private  BoxCollider COLL;
 
     // public  GameObject reposeReference;
     // public  GameObject attackReference;
 
-    public Transform player, containerRepose, containerAttack;
+    public Transform player;
+    public Transform containerRepose;
+    public Transform containerAttack;
 
     public bool equiped = false;
     public bool throwed = false;
@@ -20,6 +22,8 @@ public class Spear : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        RB = GetComponent<Rigidbody>();
+        COLL = GetComponent<BoxCollider>();
         // SpearPosition = transform.position;
         // SpearRotation = transform.rotation;
         onRepose();  

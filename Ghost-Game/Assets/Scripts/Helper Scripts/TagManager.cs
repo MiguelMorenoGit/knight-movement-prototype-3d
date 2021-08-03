@@ -66,5 +66,7 @@ public class Tags {
     public const string MAIN_CAMERA_TAG = "MainCamera";
     public const string HEALTH_UI_TAG = "HealthUI";
 
+    public const string SPEAR_LAUNCH_POSITION = "SpearLaunchPosition";
+
 
 }

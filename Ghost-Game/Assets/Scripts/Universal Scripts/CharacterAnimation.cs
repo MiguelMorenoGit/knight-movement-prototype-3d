@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class CharacterAnimation : MonoBehaviour {
 
     private Animator anim;
     public Rigidbody Spear;
+    private GameObject SpearLaunchPosition;
 
     void Awake() {
 
         anim = GetComponent<Animator>();
+        SpearLaunchPosition = GameObject.FindGameObjectsWithTag(Tags.SPEAR_LAUNCH_POSITION)[0];
     }
 
     // movements
@@ -50,49 +53,28 @@ public class CharacterAnimation : MonoBehaviour {
         anim.SetTrigger(AnimationParameters.THROW_SPEAR);
     }
     public void Throw_Spear() {
-        // var rigibodyNewSpear = newSpear.GetComponent<Rigidbody>();
-
-        Spear.transform.parent = null;
-        Spear.isKinematic = false;
-
-        var newSpear = Instantiate(Spear);
-        newSpear.transform.SetParent(null);
-        // var newSpearParent = newSpear.GetComponent<Transform>();
-        // newSpear.transform.parent = null;
-        // newSpear.transform.parent = null;
-        // newSpear.transform.parent = null;
-        // newSpear.transform.parent = null;
-        // newSpear.transform.parent = null;
-
-        // var newSpear = Instantiate(Spear);
-        // var parent = Spear.GetComponentInParent<Transform>();
-        
-        // newSpear.transform.position = Spear.transform.position;
-        // newSpear.transform.rotation = Spear.transform.rotation;
-        // newSpear.transform.localScale = Spear.transform.localScale;
-        // newSpear.transform.SetParent(parent);
-
-        // Debug.Log(newSpear.transform.position);
-        // Debug.Log(newSpear.transform.rotation);
-        // Debug.Log(Spear.transform.position);
-        // Debug.Log(Spear.transform.rotation);
-
-        // Debug.Log(newSpear.transform.localPosition);
-        // Debug.Log(Spear.transform.localPosition);
-        
-        // Debug.Log(newSpear.transform.localPosition);
-        // Debug.Log(Spear.transform.localPosition);
-
-        
-
-        newSpear.isKinematic = false;
-        // newSpear.transform.parent = null;
-        newSpear.AddForce(transform.forward * 20, ForceMode.Impulse);
-
-        // var newSpear = Instantiate(Spear);
+       
         // Spear.isKinematic = false;
-        // // Spear.transform.parent = null;
+        // Spear.transform.parent = null;
         // Spear.AddForce(transform.forward * 20, ForceMode.Impulse);
+  
+        Rigidbody spearInstance;
+        spearInstance = Instantiate(Spear, SpearLaunchPosition.transform.position, SpearLaunchPosition.transform.rotation);
+        // spearInstance.GetComponent<Spear>().enabled = false;
+        spearInstance.isKinematic = false;
+        spearInstance.useGravity = false;
+        // spearInstance.name = "Throwed_Spear";
+        spearInstance.transform.parent = null;
+        spearInstance.AddForce(transform.forward * 25, ForceMode.Impulse);
+        // spearInstance.transform.SetParent(SpearLaunchPosition.transform.parent);
+        // spearInstance.transform.localPosition = Vector3.zero;
+        // spearInstance.transform.localRotation = Quaternion.Euler(Vector3.zero);
+        // spearInstance.transform.localScale = Vector3.one;
+        // spearInstance.transform.position = new Vector3(2,2,2);
+        // Debug.Log("Spear position : " + Spear.transform.position);
+        // Debug.Log("Spear rotation : " + Spear.transform.rotation);
+        
+       
 
     }
 

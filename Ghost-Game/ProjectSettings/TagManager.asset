@@ -15,6 +15,7 @@ TagManager:
   - MainCamera2
   - SpearTag
   - SpearLaunchPosition
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -29,7 +30,7 @@ TagManager:
   - Player
   - Enemy
   - Spear
-  - 
+  - Stage
   - 
   - 
   - 

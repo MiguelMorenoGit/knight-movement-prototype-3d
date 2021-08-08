@@ -25,6 +25,11 @@ public class AttackUniversal : MonoBehaviour {
         DetectCollision();
     }
 
+    void OnCollisionEnter(Collision other) {
+        print("We Hit the " + other.gameObject.name);
+        print("the tag name is Proyectile ? " + gameObject.CompareTag(Tags.PROJECTILE));
+    }
+
     void DetectCollision() {
 
         Collider[] hit = Physics.OverlapSphere(transform.position, radius, collisionLayer);
@@ -49,7 +54,7 @@ public class AttackUniversal : MonoBehaviour {
                     gameObject.CompareTag(Tags.KICK_2_TAG) ||
                     gameObject.CompareTag(Tags.KICK_JUMP_TAG)) {
 
-                    hit[0].GetComponent<HealthScript>().ApplyDamage(damage, true);
+                    hit[0].GetComponent<HealthScript>().ApplyDamage(damage,  true);
 
                 } else {
                     hit[0].GetComponent<HealthScript>().ApplyDamage(damage, false);
@@ -57,8 +62,13 @@ public class AttackUniversal : MonoBehaviour {
 
             } // if is player
             print("We Hit the " + hit[0].gameObject.name);
+            print("the tag name is Proyectile ? " + gameObject.CompareTag(Tags.PROJECTILE));
+            // print("the Tag name is " + gameObject.Tag);
 
-            gameObject.SetActive(false);
+            if(gameObject.CompareTag(Tags.PROJECTILE)) Destroy(gameObject);
+            else gameObject.SetActive(false);
+            
+
 
         } // if we have a hit
 

@@ -42,8 +42,8 @@ public class HealthScript : MonoBehaviour {
             characterDied = true;
             enemyMovement.enabled= false;
             CapsuleCollider.enabled = false;
-            BoxCollider.size = new Vector3(0.3f,0.2f,0.3f);
-            rb.constraints = RigidbodyConstraints.FreezePosition;
+            // BoxCollider.size = new Vector3(0.3f,0.2f,0.3f);
+            // rb.constraints = RigidbodyConstraints.FreezePosition;
 
             // if is player deactivate enemy script
             if(is_Player) {

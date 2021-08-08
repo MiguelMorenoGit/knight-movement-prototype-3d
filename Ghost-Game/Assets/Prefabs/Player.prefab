@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 2678126009702452626}
   - component: {fileID: 2678126009702452636}
   - component: {fileID: 2678126009702452639}
+  - component: {fileID: 5611984621906007658}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -236,8 +237,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   is_Player: 1
+  CapsuleCollider: {fileID: 0}
+  BoxCollider: {fileID: 0}
   characterDied: 0
   characterKnockdown: 0
+--- !u!114 &5611984621906007658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2678126009702452638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d81b84b13120081428e4447ff4a68e83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DistanceWeapon: {fileID: 0}
+  WeaponLaunchHorizontal: {fileID: 0}
+  WeaponLaunchVertical: {fileID: 0}
+  WeaponLaunchDiagonal: {fileID: 0}
+  VelocityOfAttack: 25
+  offsetLaunchTime: 0.5
 --- !u!1 &2678126010035863940
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,6 +490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 667ac8c972049244fbd5e5f57e42959f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Spear: {fileID: 0}
 --- !u!114 &2678126011076774086
 MonoBehaviour:
   m_ObjectHideFlags: 0

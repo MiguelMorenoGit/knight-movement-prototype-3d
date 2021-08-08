@@ -52,30 +52,15 @@ public class CharacterAnimation : MonoBehaviour {
     public void Throw_Spear_Animation_Start() {
         anim.SetTrigger(AnimationParameters.THROW_SPEAR);
     }
+    
     public void Throw_Spear() {
        
-        // Spear.isKinematic = false;
-        // Spear.transform.parent = null;
-        // Spear.AddForce(transform.forward * 20, ForceMode.Impulse);
-  
-        Rigidbody spearInstance;
-        spearInstance = Instantiate(Spear, SpearLaunchPosition.transform.position, SpearLaunchPosition.transform.rotation);
-        // spearInstance.GetComponent<Spear>().enabled = false;
-        spearInstance.isKinematic = false;
-        spearInstance.useGravity = false;
-        // spearInstance.name = "Throwed_Spear";
-        spearInstance.transform.parent = null;
-        spearInstance.AddForce(transform.forward * 25, ForceMode.Impulse);
-        // spearInstance.transform.SetParent(SpearLaunchPosition.transform.parent);
-        // spearInstance.transform.localPosition = Vector3.zero;
-        // spearInstance.transform.localRotation = Quaternion.Euler(Vector3.zero);
-        // spearInstance.transform.localScale = Vector3.one;
-        // spearInstance.transform.position = new Vector3(2,2,2);
-        // Debug.Log("Spear position : " + Spear.transform.position);
-        // Debug.Log("Spear rotation : " + Spear.transform.rotation);
-        
-       
-
+    //     Rigidbody spearInstance;
+    //     spearInstance = Instantiate(Spear, SpearLaunchPosition.transform.position, SpearLaunchPosition.transform.rotation);
+    //     spearInstance.isKinematic = false;
+    //     spearInstance.useGravity = false;
+    //     spearInstance.transform.parent = null;
+    //     spearInstance.AddForce(transform.forward * 25, ForceMode.Impulse);
     }
 
     //  ENEMY ANIMATIONS

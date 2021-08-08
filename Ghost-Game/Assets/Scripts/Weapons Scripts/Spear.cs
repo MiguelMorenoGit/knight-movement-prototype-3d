@@ -80,6 +80,10 @@ public class Spear : MonoBehaviour
            
     // }
 
+    private void OnCollisionEnter(Collision other) {
+        Debug.Log("Colision enter");
+    }
+
     void onRepose() {
         // slotFull = false;
 

@@ -170,7 +170,7 @@ public class PlayerController : MonoBehaviour {
         currentAnimation = playerAnimatorController.GetCurrentAnimatorClipInfo(0);
         clipName = currentAnimation[0].clip.name;
 
-        if(clipName.Trim() == "Standard Walk" || clipName.Trim() == "idle"){
+        if(clipName.Trim() == "Standard Walk" || clipName.Trim() == "idle" || clipName.Trim() == "WALK" ){
             playerCanMove = true;
 
         } else {

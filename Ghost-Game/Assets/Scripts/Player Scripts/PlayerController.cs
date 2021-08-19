@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour {
     //Variables Animacion
     public Animator playerAnimatorController;
 
+    public ParticleSystem DustJumpEffect; 
+
     // Start is called before the first frame update
     void Start() {
         player = GetComponent<CharacterController>();
@@ -140,6 +142,8 @@ public class PlayerController : MonoBehaviour {
             movePlayer.y = fallVelocity;
 
             playerAnimatorController.SetTrigger(AnimationParameters.JUMP_TRIGGER);
+            //añadimos el efecto de dustJump
+            ActiveDustJumpEffect();
         }
 
     }
@@ -170,7 +174,7 @@ public class PlayerController : MonoBehaviour {
         currentAnimation = playerAnimatorController.GetCurrentAnimatorClipInfo(0);
         clipName = currentAnimation[0].clip.name;
 
-        if(clipName.Trim() == "Standard Walk" || clipName.Trim() == "idle" || clipName.Trim() == "WALK" ){
+        if(clipName.Trim() == AnimationNames.STANDARD_WALK || clipName.Trim() == "idle" || clipName.Trim() == "WALK" ){
             playerCanMove = true;
 
         } else {
@@ -196,6 +200,14 @@ public class PlayerController : MonoBehaviour {
     // }
 
     private void OnAnimatorMove(){
+
+    }
+
+    private void ActiveDustJumpEffect(){
+
+        ParticleSystem DustJump = Instantiate(DustJumpEffect, player.transform.position + new Vector3(0,0.1f,0), player.transform.rotation);
+        DustJump.Play();
+        
 
     }
 

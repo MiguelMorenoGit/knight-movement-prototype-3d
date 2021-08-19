@@ -79,8 +79,8 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips:
   - 8193226e94424d743be81940d0974433
-  - 9637ee926fc74f449856773d9df5d217
   - 0a12feb9697933945af739a93a2de910
+  - 9637ee926fc74f449856773d9df5d217
   - 59d8c928c5f60ef44987ddc857b097c6
   - 93ad3ac095617634082e36fa2e149efe
   importAnimation: 1
@@ -95,7 +95,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.0139999995
+    globalScale: 1.4
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

@@ -11,7 +11,9 @@ public class PlayerController : MonoBehaviour {
     private Vector3 playerInput;
 
     public CharacterController player;
-    public float playerSpeed;
+    public float playerWalkSpeed;
+    public float playerRunSpeed;
+    private float playerSpeed;
     public float gravity = 9.8f;
     public float fallVelocity;
     public float jumpForce;
@@ -48,10 +50,12 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
-
-
         horizontalMove = Input.GetAxis(Axis.HORIZONTAL_AXIS);
         verticalMove = Input.GetAxis(Axis.VERTICAL_AXIS);
+
+        // Set speed for Walk or Run
+        playerSpeed = playerWalkSpeed;
+        if (Input.GetKey(KeyCode.LeftShift)) playerSpeed = playerRunSpeed;
 
         if(mobility == "2D") {
             // Jugabilidad 2D
@@ -174,7 +178,14 @@ public class PlayerController : MonoBehaviour {
         currentAnimation = playerAnimatorController.GetCurrentAnimatorClipInfo(0);
         clipName = currentAnimation[0].clip.name;
 
-        if(clipName.Trim() == AnimationNames.STANDARD_WALK || clipName.Trim() == "idle" || clipName.Trim() == "WALK" ){
+        if(
+            clipName.Trim() == AnimationNames.STANDARD_WALK || 
+            clipName.Trim() == AnimationNames.STANDARD_RUN|| 
+            clipName.Trim() == "idle" || 
+            clipName.Trim() == "WALK" 
+        
+        ) {
+
             playerCanMove = true;
 
         } else {

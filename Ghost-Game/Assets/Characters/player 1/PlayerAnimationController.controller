@@ -1207,7 +1207,7 @@ BlendTree:
   m_BlendParameter: PlayerWalkVelocity
   m_BlendParameterY: PlayerWalkVelocity
   m_MinThreshold: 0
-  m_MaxThreshold: 2
+  m_MaxThreshold: 4
   m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
   m_BlendType: 0

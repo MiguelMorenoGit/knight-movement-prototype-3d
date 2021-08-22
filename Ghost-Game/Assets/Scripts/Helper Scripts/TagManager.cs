@@ -42,6 +42,7 @@ public class AnimationParameters {
 
 public class AnimationNames {
     public const string STANDARD_WALK = "Standard Walk";
+    public const string STANDARD_RUN = "Standard Run";
     public const string ARTHUR_THROW_SPEAR = "Arthur Throw Spear";
 }
 

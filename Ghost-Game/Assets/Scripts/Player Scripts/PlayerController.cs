@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour {
     public float fallVelocity;
     public float jumpForce;
     public bool playerCanMove = true;
+    public bool playerIsRunning = false;
     public string mobility = "2D";
     
     //Variables movimiento relativo a camara
@@ -45,6 +46,7 @@ public class PlayerController : MonoBehaviour {
     void Start() {
         player = GetComponent<CharacterController>();
         playerAnimatorController = GetComponentInChildren<Animator>();
+        playerSpeed = playerWalkSpeed;
     }
 
     // Update is called once per frame
@@ -54,8 +56,7 @@ public class PlayerController : MonoBehaviour {
         verticalMove = Input.GetAxis(Axis.VERTICAL_AXIS);
 
         // Set speed for Walk or Run
-        playerSpeed = playerWalkSpeed;
-        if (Input.GetKey(KeyCode.LeftShift)) playerSpeed = playerRunSpeed;
+        setPlayerSpeed();
 
         if(mobility == "2D") {
             // Jugabilidad 2D
@@ -66,7 +67,7 @@ public class PlayerController : MonoBehaviour {
             // Jugabilidad 3D
             playerInput = new Vector3(horizontalMove,0,verticalMove); // los almacenamos en Vector3
         }
-
+        
         playerInput = Vector3.ClampMagnitude(playerInput, 1); // Y limitamos su magnitud a 1 para evitar acelerones en movimientos diagonales
 
         playerAnimatorController.SetFloat(AnimationParameters.WALK_VELOCITY, playerInput.magnitude * playerSpeed);
@@ -103,6 +104,7 @@ public class PlayerController : MonoBehaviour {
         
         PlayerSkills(); //Iniciamos las skills
         PlayerMobility(); //Iniciamos la jugabilidad entre 3D y 2D
+        PlayerEffects(); // Iniciamos los effectos que afectan al player
 
         player.Move(movePlayer * Time.deltaTime); // iniciamos el movimiento del player
 
@@ -136,6 +138,21 @@ public class PlayerController : MonoBehaviour {
         }
 
     }
+
+    public void setPlayerSpeed() {
+
+        if (Input.GetKey(KeyCode.LeftShift) && player.isGrounded ) {
+            playerSpeed = playerRunSpeed;
+            playerIsRunning = true;
+        }
+
+        if (!Input.GetKey(KeyCode.LeftShift) && player.isGrounded ) {
+            playerSpeed = playerWalkSpeed;
+            playerIsRunning = false;
+        }
+    }
+
+
     //Funcion para las habilidades de nuestro jugador
     public void PlayerSkills() {
 
@@ -150,6 +167,17 @@ public class PlayerController : MonoBehaviour {
             ActiveDustJumpEffect();
         }
 
+        //comprobamos si esta corriendo
+
+    }
+
+    public void PlayerEffects() {
+
+        // FX - Dust Jump
+        if(player.isGrounded && Input.GetKeyDown(KeyCode.Space)) ActiveDustJumpEffect();
+
+        // FX - Dust Run
+        if(player.isGrounded && Input.GetKey(KeyCode.LeftShift)) ActiveDustRunEffect();
     }
 
     //Funcion para la Gravedad
@@ -180,8 +208,9 @@ public class PlayerController : MonoBehaviour {
 
         if(
             clipName.Trim() == AnimationNames.STANDARD_WALK || 
-            clipName.Trim() == AnimationNames.STANDARD_RUN|| 
-            clipName.Trim() == "idle" || 
+            clipName.Trim() == AnimationNames.STANDARD_RUN || 
+            clipName.Trim() == AnimationNames.IDLE_STANDARD || 
+            clipName.Trim() == AnimationNames.IDLE || 
             clipName.Trim() == "WALK" 
         
         ) {
@@ -215,6 +244,14 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void ActiveDustJumpEffect(){
+
+        ParticleSystem DustJump = Instantiate(DustJumpEffect, player.transform.position + new Vector3(0,0.1f,0), player.transform.rotation);
+        DustJump.Play();
+        
+
+    }
+
+    private void ActiveDustRunEffect(){
 
         ParticleSystem DustJump = Instantiate(DustJumpEffect, player.transform.position + new Vector3(0,0.1f,0), player.transform.rotation);
         DustJump.Play();

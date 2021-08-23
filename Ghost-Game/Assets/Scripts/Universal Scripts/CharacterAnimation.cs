@@ -78,7 +78,7 @@ public class CharacterAnimation : MonoBehaviour {
     } // enemy attack
 
     public void Play_IdleAnimation() {
-        anim.Play(AnimationParameters.IDLE_ANIMATION);
+        anim.Play(AnimationNames.IDLE);
     }
 
     public void KnockDown() {

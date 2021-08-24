@@ -7114,8 +7114,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.052335896, y: 0, z: 0, w: 0.9986295}
-  m_LocalPosition: {x: 0.00000166893, y: 1.6725308, z: -9.8792925}
+  m_LocalRotation: {x: -0.0031415469, y: 0, z: 0, w: 0.99999505}
+  m_LocalPosition: {x: 2.39, y: 1.6373645, z: -9.010466}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -8566,14 +8566,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1381099996}
-  m_LocalRotation: {x: 0.052335896, y: 0, z: 0, w: 0.9986295}
-  m_LocalPosition: {x: 0.00000166893, y: 1.6725308, z: -9.8792925}
+  m_LocalRotation: {x: -0.0031415469, y: 0, z: 0, w: 0.99999505}
+  m_LocalPosition: {x: 2.39, y: 1.6373645, z: -9.010466}
   m_LocalScale: {x: 1, y: 0, z: 1}
   m_Children:
   - {fileID: 1888001720}
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 6, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.36, y: 0, z: 0}
 --- !u!1 &1418786084
 GameObject:
   m_ObjectHideFlags: 0
@@ -9430,24 +9430,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad980451443d70438faac0bc6c235a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LookaheadTime: 1
-  m_LookaheadSmoothing: 30
+  m_LookaheadTime: 0
+  m_LookaheadSmoothing: 10
   m_LookaheadIgnoreY: 1
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
-  m_ScreenX: 0.50273216
-  m_ScreenY: 0.5
-  m_CameraDistance: 10
-  m_DeadZoneWidth: 0.28254098
-  m_DeadZoneHeight: 1.0924087
+  m_ScreenX: 0.5
+  m_ScreenY: 0.663
+  m_CameraDistance: 9
+  m_DeadZoneWidth: 0
+  m_DeadZoneHeight: 0
   m_DeadZoneDepth: 0
-  m_UnlimitedSoftZone: 0
-  m_SoftZoneWidth: 0.5978962
-  m_SoftZoneHeight: 1.0924087
+  m_UnlimitedSoftZone: 1
+  m_SoftZoneWidth: 0.8
+  m_SoftZoneHeight: 1.495
   m_BiasX: 0
   m_BiasY: 0
-  m_CenterOnActivate: 0
+  m_CenterOnActivate: 1
   m_GroupFramingMode: 2
   m_AdjustmentMode: 0
   m_GroupFramingSize: 0.8
@@ -9796,13 +9796,14 @@ MonoBehaviour:
   horizontalMove: 0
   verticalMove: 0
   player: {fileID: 1934924874}
-  playerWalkSpeed: 2
+  playerWalkSpeed: 3
   playerRunSpeed: 5
-  gravity: 30
+  gravity: 36
   fallVelocity: 0
-  jumpForce: 10
+  jumpForce: 13
   playerCanMove: 0
-  mobility: 3D
+  playerIsRunning: 0
+  mobility: 2D
   mainCamera: {fileID: 963194227}
   clipName: 
   playerAnimatorController: {fileID: 0}
@@ -9834,7 +9835,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1934924872}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.39, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1349427624}
@@ -10378,6 +10379,22 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 963194227}
+    - target: {fileID: 2678126009702452624, guid: 0e2056cf76ca4234a82ae256a4e332af,
+        type: 3}
+      propertyPath: DustJumpEffect
+      value: 
+      objectReference: {fileID: 4541743688257563725, guid: e8193404235f94c46bc8fdac5f09bf6b,
+        type: 3}
+    - target: {fileID: 2678126009702452624, guid: 0e2056cf76ca4234a82ae256a4e332af,
+        type: 3}
+      propertyPath: playerRunSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2678126009702452624, guid: 0e2056cf76ca4234a82ae256a4e332af,
+        type: 3}
+      propertyPath: playerWalkSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2678126009702452625, guid: 0e2056cf76ca4234a82ae256a4e332af,
         type: 3}
       propertyPath: m_Enabled

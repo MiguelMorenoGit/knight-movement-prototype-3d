@@ -13,12 +13,13 @@ public class PlayerController : MonoBehaviour {
     public CharacterController player;
     public float playerWalkSpeed;
     public float playerRunSpeed;
-    private float playerSpeed;
+    public float playerSpeed;
     public float gravity = 9.8f;
     public float fallVelocity;
     public float jumpForce;
     public bool playerCanMove = true;
     public bool playerIsRunning = false;
+    public bool dustRunEffectIsActive = false;
     public string mobility = "2D";
     
     //Variables movimiento relativo a camara
@@ -40,7 +41,9 @@ public class PlayerController : MonoBehaviour {
     //Variables Animacion
     public Animator playerAnimatorController;
 
+    //Instancias Effectos
     public ParticleSystem DustJumpEffect; 
+    public ParticleSystem DustRunEffect; 
 
     // Start is called before the first frame update
     void Start() {
@@ -71,10 +74,13 @@ public class PlayerController : MonoBehaviour {
         playerInput = Vector3.ClampMagnitude(playerInput, 1); // Y limitamos su magnitud a 1 para evitar acelerones en movimientos diagonales
 
         playerAnimatorController.SetFloat(AnimationParameters.WALK_VELOCITY, playerInput.magnitude * playerSpeed);
+
+        Debug.Log(playerInput.magnitude);
         //Decimos en que direccion mirara el personaje
         CamDirection();
 
-        movePlayer = playerInput.x * camRight + playerInput.z * camForward; // almacenamos en moveplayer el vector de movimiento corregido con respecto a posicion de camara
+        // almacenamos en moveplayer el vector de movimiento corregido con respecto a posicion de camara
+        movePlayer = playerInput.x * camRight + playerInput.z * camForward; 
 
         // velocidad del player en funcion de si esta en el aire o no
         // comprobamos si el player esta en posicion de moverse
@@ -94,6 +100,7 @@ public class PlayerController : MonoBehaviour {
 
             movePlayer = playerInput * playerSpeed * 1.5f;
         }
+
         player.transform.LookAt(player.transform.position + movePlayer); // asignamos hacia donde va a mirar el jugador
 
         //classic 2d movement 
@@ -101,7 +108,6 @@ public class PlayerController : MonoBehaviour {
         // player.transform.LookAt(direction);
 
         SetGravity();  //Iniciamos Gravedad
-        
         PlayerSkills(); //Iniciamos las skills
         PlayerMobility(); //Iniciamos la jugabilidad entre 3D y 2D
         PlayerEffects(); // Iniciamos los effectos que afectan al player
@@ -142,12 +148,16 @@ public class PlayerController : MonoBehaviour {
     public void setPlayerSpeed() {
 
         if (Input.GetKey(KeyCode.LeftShift) && player.isGrounded ) {
-            playerSpeed = playerRunSpeed;
+
+            if(playerSpeed < playerRunSpeed) playerSpeed = playerSpeed + 0.2f > playerRunSpeed ? playerRunSpeed : playerSpeed + 0.2f ;
+            
             playerIsRunning = true;
         }
 
         if (!Input.GetKey(KeyCode.LeftShift) && player.isGrounded ) {
-            playerSpeed = playerWalkSpeed;
+
+            if(playerSpeed > playerWalkSpeed) playerSpeed =  playerSpeed - 0.2f < playerWalkSpeed ? playerWalkSpeed : playerSpeed - 0.2f;
+            
             playerIsRunning = false;
         }
     }
@@ -171,13 +181,14 @@ public class PlayerController : MonoBehaviour {
 
     }
 
+    //Funcion para Activar FX asociados al player
     public void PlayerEffects() {
 
         // FX - Dust Jump
         if(player.isGrounded && Input.GetKeyDown(KeyCode.Space)) ActiveDustJumpEffect();
 
         // FX - Dust Run
-        if(player.isGrounded && Input.GetKey(KeyCode.LeftShift)) ActiveDustRunEffect();
+        if(player.isGrounded && Input.GetKey(KeyCode.LeftShift) && playerSpeed == playerRunSpeed ) ActiveDustRunEffect();
     }
 
     //Funcion para la Gravedad
@@ -253,8 +264,20 @@ public class PlayerController : MonoBehaviour {
 
     private void ActiveDustRunEffect(){
 
-        ParticleSystem DustJump = Instantiate(DustJumpEffect, player.transform.position + new Vector3(0,0.1f,0), player.transform.rotation);
-        DustJump.Play();
+        if( !dustRunEffectIsActive ) {
+            ParticleSystem DustRun = Instantiate(DustRunEffect, player.transform.position + new Vector3(0,0.25f,0) + player.transform.forward * -1f, player.transform.rotation);
+            DustRun.Play();
+            
+            StartCoroutine(RunEffectTime());
+        } 
+ 
+    }
+
+    IEnumerator RunEffectTime() {
+        
+        dustRunEffectIsActive = true;
+        yield return new WaitForSeconds(Random.Range(0.1f,0.3f));
+        dustRunEffectIsActive = false;
         
     }
 

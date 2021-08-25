@@ -9797,17 +9797,21 @@ MonoBehaviour:
   verticalMove: 0
   player: {fileID: 1934924874}
   playerWalkSpeed: 3
-  playerRunSpeed: 5
+  playerRunSpeed: 6
+  playerSpeed: 0
   gravity: 36
   fallVelocity: 0
   jumpForce: 13
   playerCanMove: 0
   playerIsRunning: 0
+  dustRunEffectIsActive: 0
   mobility: 2D
   mainCamera: {fileID: 963194227}
   clipName: 
   playerAnimatorController: {fileID: 0}
   DustJumpEffect: {fileID: 4541743688257563725, guid: e8193404235f94c46bc8fdac5f09bf6b,
+    type: 3}
+  DustRunEffect: {fileID: 4541743688257563725, guid: 06d2b9c46cd0ee048bfce2460d5509fb,
     type: 3}
 --- !u!143 &1934924874
 CharacterController:

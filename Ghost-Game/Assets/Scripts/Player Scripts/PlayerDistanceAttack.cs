@@ -10,10 +10,17 @@ public class PlayerDistanceAttack : MonoBehaviour {
     public GameObject WeaponLaunchDiagonal;
 
     private GameObject WeaponLaunchPosition;
+    private SFX_Playing SFX_Play;
    
 
     public float VelocityOfAttack = 25;
     public float offsetLaunchTime = 0.5f;
+
+    // Start is called before the first frame update
+    void Start() {
+        SFX_Play = GetComponent<SFX_Playing>();
+        
+    }
 
     // Start is called before the first frame update
     void Awake() {
@@ -66,6 +73,9 @@ public class PlayerDistanceAttack : MonoBehaviour {
 
         print("Spear was Launched");
         print("WeaponLaunchPosition " + WeaponLaunchPosition.name);
+
+        // SFX - Jump
+        SFX_Play.PlayLaunchSpear();
        
         Rigidbody WeaponInstance;
         WeaponInstance = Instantiate(DistanceWeapon.GetComponent<Rigidbody>(), WeaponLaunchPosition.transform.position, WeaponLaunchPosition.transform.rotation);
@@ -73,5 +83,7 @@ public class PlayerDistanceAttack : MonoBehaviour {
         WeaponInstance.useGravity = false;
         WeaponInstance.transform.parent = null;
         WeaponInstance.AddForce(WeaponLaunchPosition.transform.forward * VelocityOfAttack, ForceMode.Impulse);
+
+        
     }
 }

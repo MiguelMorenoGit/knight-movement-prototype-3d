@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour {
     // public float slopeForceDown;
 
     private AnimatorClipInfo[] currentAnimation;
+    private SFX_Playing SFX_Play;
     public string clipName;
 
     //Variables Animacion
@@ -48,6 +49,7 @@ public class PlayerController : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         player = GetComponent<CharacterController>();
+        SFX_Play = GetComponent<SFX_Playing>();
         playerAnimatorController = GetComponentInChildren<Animator>();
         playerSpeed = playerWalkSpeed;
     }
@@ -181,11 +183,18 @@ public class PlayerController : MonoBehaviour {
 
     }
 
-    //Funcion para Activar FX asociados al player
+    //Funcion para Activar FX and SFX asociados al player
     public void PlayerEffects() {
 
-        // FX - Dust Jump
-        if(player.isGrounded && Input.GetKeyDown(KeyCode.Space)) ActiveDustJumpEffect();
+        // Jump
+        if(player.isGrounded && Input.GetKeyDown(KeyCode.Space)) {
+
+            // FX - Dust Jump
+            ActiveDustJumpEffect();
+            // SFX - Jump
+            SFX_Play.PlayJump();
+            //SFX_Play.PlayLaunchSpear();
+        }
 
         // FX - Dust Run
         if(player.isGrounded && Input.GetKey(KeyCode.LeftShift) && playerSpeed == playerRunSpeed ) ActiveDustRunEffect();

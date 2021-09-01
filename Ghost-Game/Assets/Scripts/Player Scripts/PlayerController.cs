@@ -16,11 +16,14 @@ public class PlayerController : MonoBehaviour {
     public float playerSpeed;
     public float gravity = 9.8f;
     public float fallVelocity;
+    public float fallMultiplier = 1;
     public float jumpForce;
     public float doubleJumpForce;
     public bool playerCanMove = true;
     public bool playerIsRunning = false;
     public bool playerIsDoubleJump = false;
+    public bool playerIsJumping = false;
+    public bool playerIsFalling = false;
     public bool dustRunEffectIsActive = false;
     public string mobility = "2D";
     
@@ -58,6 +61,7 @@ public class PlayerController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+
 
         horizontalMove = Input.GetAxis(Axis.HORIZONTAL_AXIS);
         verticalMove = Input.GetAxis(Axis.VERTICAL_AXIS);
@@ -153,16 +157,22 @@ public class PlayerController : MonoBehaviour {
         // RUNNING
         if (Input.GetKey(KeyCode.LeftShift) && player.isGrounded ) {
 
-            if(playerSpeed < playerRunSpeed) playerSpeed = playerSpeed + 0.2f > playerRunSpeed ? playerRunSpeed : playerSpeed + 0.2f ;
-            
             playerIsRunning = true;
+
+            if(playerSpeed < playerRunSpeed) playerSpeed = playerSpeed + 0.2f > playerRunSpeed ? playerRunSpeed : playerSpeed + 0.2f ;  
         }
         // WALKING
         if (!Input.GetKey(KeyCode.LeftShift) && player.isGrounded ) {
-
-            if(playerSpeed > playerWalkSpeed) playerSpeed =  playerSpeed - 0.2f < playerWalkSpeed ? playerWalkSpeed : playerSpeed - 0.2f;
-            
             playerIsRunning = false;
+
+            if(playerSpeed > playerWalkSpeed) playerSpeed =  playerSpeed - 0.2f < playerWalkSpeed ? playerWalkSpeed : playerSpeed - 0.2f; 
+        }
+        // FALLING FROM PLATFORM
+        if (playerIsFalling && (fallVelocity < 0) && !player.isGrounded ) {
+            playerIsFalling = true;
+
+            if(playerSpeed > playerWalkSpeed) playerSpeed =  playerSpeed - 0.2f;
+            
         }
     }
 
@@ -173,6 +183,7 @@ public class PlayerController : MonoBehaviour {
         //JUMP from ground
         if (player.isGrounded && Input.GetKeyDown(KeyCode.Space)) {
 
+            playerIsJumping = true;
             fallVelocity = jumpForce;
             movePlayer.y = fallVelocity;
 
@@ -181,14 +192,20 @@ public class PlayerController : MonoBehaviour {
         //DOUBLE JUMP from air
         else if (!player.isGrounded && Input.GetKeyDown(KeyCode.Space) && !playerIsDoubleJump) {
 
+            playerIsDoubleJump = true;
             fallVelocity = doubleJumpForce;
             movePlayer.y = fallVelocity;
 
             playerAnimatorController.SetTrigger(AnimationParameters.DOUBLE_JUMP_TRIGGER);
-            playerIsDoubleJump = true;
+        }
+        //FALLING FROM PLATFORM
+        else if (!playerIsJumping && (fallVelocity < 0) && !player.isGrounded ) {
+            playerIsFalling = true;
         }
         else if (player.isGrounded) {
             playerIsDoubleJump = false;
+            playerIsJumping = false;
+            playerIsFalling = false;
         }
 
         //comprobamos si esta corriendo
@@ -231,8 +248,20 @@ public class PlayerController : MonoBehaviour {
 
         } else {
 
-            fallVelocity -= gravity * Time.deltaTime;
-            movePlayer.y = fallVelocity;
+            //esta subiendo
+            if(fallVelocity >= 0) {
+
+                fallVelocity -= gravity * Time.deltaTime;
+                movePlayer.y = fallVelocity;
+            }
+
+            //esta bajando
+            else {
+
+                fallVelocity -= gravity * fallMultiplier * Time.deltaTime;
+                movePlayer.y = fallVelocity;
+            }
+
             playerAnimatorController.SetFloat(AnimationParameters.VERTICAL_VELOCITY, player.velocity.y);
         }
 

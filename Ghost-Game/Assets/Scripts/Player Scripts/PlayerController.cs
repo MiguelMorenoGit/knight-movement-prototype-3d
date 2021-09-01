@@ -17,8 +17,10 @@ public class PlayerController : MonoBehaviour {
     public float gravity = 9.8f;
     public float fallVelocity;
     public float jumpForce;
+    public float doubleJumpForce;
     public bool playerCanMove = true;
     public bool playerIsRunning = false;
+    public bool playerIsDoubleJump = false;
     public bool dustRunEffectIsActive = false;
     public string mobility = "2D";
     
@@ -110,9 +112,9 @@ public class PlayerController : MonoBehaviour {
         // player.transform.LookAt(direction);
 
         SetGravity();  //Iniciamos Gravedad
-        PlayerSkills(); //Iniciamos las skills
-        PlayerMobility(); //Iniciamos la jugabilidad entre 3D y 2D
         PlayerEffects(); // Iniciamos los effectos que afectan al player
+        PlayerSkills(); //Iniciamos las skills
+        PlayerGamePlayDimension(); //Iniciamos la jugabilidad entre 3D y 2D
 
         player.Move(movePlayer * Time.deltaTime); // iniciamos el movimiento del player
 
@@ -136,7 +138,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     //Funcion para las habilidades de nuestro jugador
-    public void PlayerMobility() {
+    public void PlayerGamePlayDimension() {
 
         //Si estamos tocando el suelo y pulsamos el boton "Jump"
         if (player.isGrounded && Input.GetKeyDown(KeyCode.F1)) {
@@ -148,14 +150,14 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void setPlayerSpeed() {
-
+        // RUNNING
         if (Input.GetKey(KeyCode.LeftShift) && player.isGrounded ) {
 
             if(playerSpeed < playerRunSpeed) playerSpeed = playerSpeed + 0.2f > playerRunSpeed ? playerRunSpeed : playerSpeed + 0.2f ;
             
             playerIsRunning = true;
         }
-
+        // WALKING
         if (!Input.GetKey(KeyCode.LeftShift) && player.isGrounded ) {
 
             if(playerSpeed > playerWalkSpeed) playerSpeed =  playerSpeed - 0.2f < playerWalkSpeed ? playerWalkSpeed : playerSpeed - 0.2f;
@@ -168,15 +170,25 @@ public class PlayerController : MonoBehaviour {
     //Funcion para las habilidades de nuestro jugador
     public void PlayerSkills() {
 
-        //Si estamos tocando el suelo y pulsamos el boton "Jump"
+        //JUMP from ground
         if (player.isGrounded && Input.GetKeyDown(KeyCode.Space)) {
 
             fallVelocity = jumpForce;
             movePlayer.y = fallVelocity;
 
             playerAnimatorController.SetTrigger(AnimationParameters.JUMP_TRIGGER);
-            //añadimos el efecto de dustJump
-            ActiveDustJumpEffect();
+        }
+        //DOUBLE JUMP from air
+        else if (!player.isGrounded && Input.GetKeyDown(KeyCode.Space) && !playerIsDoubleJump) {
+
+            fallVelocity = doubleJumpForce;
+            movePlayer.y = fallVelocity;
+
+            playerAnimatorController.SetTrigger(AnimationParameters.DOUBLE_JUMP_TRIGGER);
+            playerIsDoubleJump = true;
+        }
+        else if (player.isGrounded) {
+            playerIsDoubleJump = false;
         }
 
         //comprobamos si esta corriendo
@@ -193,6 +205,13 @@ public class PlayerController : MonoBehaviour {
             ActiveDustJumpEffect();
             // SFX - Jump
             SFX_Play.PlayJump();
+            //SFX_Play.PlayLaunchSpear();
+        }
+        if(!player.isGrounded && Input.GetKeyDown(KeyCode.Space) && !playerIsDoubleJump) {
+            // FX - Dust Jump
+            ActiveDustJumpEffect();
+            // SFX - Jump
+            SFX_Play. PlayDoubleJump();
             //SFX_Play.PlayLaunchSpear();
         }
 

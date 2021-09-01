@@ -15,6 +15,9 @@ public class AnimationParameters {
     
 
     public const string JUMP_TRIGGER = "PlayerJump";
+    public const string DOUBLE_JUMP_TRIGGER = "PlayerDoubleJump";
+
+    public const string IS_DOUBLE_JUMP_BOOL = "isPlayerOnDoubleJump";
 
     public const string PUNCH_1_TRIGGER = "Punch1";
     public const string PUNCH_2_TRIGGER = "Punch2";

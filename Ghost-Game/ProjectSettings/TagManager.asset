@@ -16,6 +16,7 @@ TagManager:
   - SpearTag
   - SpearLaunchPosition
   - Projectile
+  - Stage
   layers:
   - Default
   - TransparentFX

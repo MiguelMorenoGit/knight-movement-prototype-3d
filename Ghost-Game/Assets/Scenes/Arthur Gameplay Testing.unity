@@ -407,7 +407,7 @@ GameObject:
   - component: {fileID: 134740400}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -503,7 +503,7 @@ GameObject:
   - component: {fileID: 153429335}
   m_Layer: 0
   m_Name: CubeRB
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -822,7 +822,7 @@ GameObject:
   - component: {fileID: 388374819}
   m_Layer: 0
   m_Name: Escaleras
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -862,7 +862,7 @@ GameObject:
   - component: {fileID: 410183751}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1012,7 +1012,7 @@ GameObject:
   - component: {fileID: 457257002}
   m_Layer: 0
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1187,7 +1187,7 @@ GameObject:
   - component: {fileID: 563083333}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1471,7 +1471,7 @@ GameObject:
   - component: {fileID: 756741720}
   m_Layer: 0
   m_Name: SphereRB
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1579,7 +1579,7 @@ GameObject:
   - component: {fileID: 777548882}
   m_Layer: 13
   m_Name: Muros
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1660,7 +1660,7 @@ GameObject:
   - component: {fileID: 869515808}
   m_Layer: 0
   m_Name: CubeRB2
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1971,7 +1971,7 @@ GameObject:
   - component: {fileID: 1005152886}
   m_Layer: 0
   m_Name: ColumnaRB
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2744,7 +2744,7 @@ GameObject:
   - component: {fileID: 1332716467}
   m_Layer: 0
   m_Name: Escenario
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3135,7 +3135,7 @@ GameObject:
   - component: {fileID: 1424142007}
   m_Layer: 0
   m_Name: Rampa
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3301,7 +3301,7 @@ GameObject:
   - component: {fileID: 1653329331}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3402,7 +3402,7 @@ GameObject:
   - component: {fileID: 1709678522}
   m_Layer: 0
   m_Name: GrupoPinchos
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4037,9 +4037,9 @@ GameObject:
   - component: {fileID: 2060460154}
   - component: {fileID: 2060460153}
   - component: {fileID: 2060460152}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

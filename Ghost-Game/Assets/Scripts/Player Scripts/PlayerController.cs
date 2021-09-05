@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour {
 
         playerAnimatorController.SetFloat(AnimationParameters.WALK_VELOCITY, playerInput.magnitude * playerSpeed);
 
-        Debug.Log(playerInput.magnitude);
+        // Debug.Log(playerInput.magnitude);
         //Decimos en que direccion mirara el personaje
         CamDirection();
 
@@ -171,7 +171,13 @@ public class PlayerController : MonoBehaviour {
         if (playerIsFalling && (fallVelocity < 0) && !player.isGrounded ) {
             playerIsFalling = true;
 
-            if(playerSpeed > playerWalkSpeed) playerSpeed =  playerSpeed - 0.2f;
+            if(playerSpeed > playerWalkSpeed) playerSpeed =  playerSpeed - 1.5f;
+            
+        }
+        // FALLING FROM JUMP
+        if ((playerIsJumping || playerIsDoubleJump) && (fallVelocity < -5) && !player.isGrounded ) {
+            
+            if(playerSpeed > playerWalkSpeed) playerSpeed =  playerSpeed - 0.6f;
             
         }
     }
@@ -190,7 +196,7 @@ public class PlayerController : MonoBehaviour {
             playerAnimatorController.SetTrigger(AnimationParameters.JUMP_TRIGGER);
         }
         //DOUBLE JUMP from air
-        else if (!player.isGrounded && Input.GetKeyDown(KeyCode.Space) && !playerIsDoubleJump) {
+        else if (!player.isGrounded && Input.GetKeyDown(KeyCode.Space) && !playerIsDoubleJump && !playerIsFalling && playerIsJumping) {
 
             playerIsDoubleJump = true;
             fallVelocity = doubleJumpForce;
@@ -201,6 +207,8 @@ public class PlayerController : MonoBehaviour {
         //FALLING FROM PLATFORM
         else if (!playerIsJumping && (fallVelocity < 0) && !player.isGrounded ) {
             playerIsFalling = true;
+            playerIsDoubleJump = false;
+            playerIsJumping = false;
         }
         else if (player.isGrounded) {
             playerIsDoubleJump = false;
@@ -222,16 +230,15 @@ public class PlayerController : MonoBehaviour {
             ActiveDustJumpEffect();
             // SFX - Jump
             SFX_Play.PlayJump();
-            //SFX_Play.PlayLaunchSpear();
         }
-        if(!player.isGrounded && Input.GetKeyDown(KeyCode.Space) && !playerIsDoubleJump) {
+        // DoubleJump
+        if(!player.isGrounded && Input.GetKeyDown(KeyCode.Space) && !playerIsDoubleJump && !playerIsFalling && playerIsJumping) {
             // FX - Dust Jump
             ActiveDustJumpEffect();
             // SFX - Jump
             SFX_Play. PlayDoubleJump();
-            //SFX_Play.PlayLaunchSpear();
+            
         }
-
         // FX - Dust Run
         if(player.isGrounded && Input.GetKey(KeyCode.LeftShift) && playerSpeed == playerRunSpeed ) ActiveDustRunEffect();
     }
@@ -336,6 +343,12 @@ public class PlayerController : MonoBehaviour {
         yield return new WaitForSeconds(Random.Range(0.1f,0.3f));
         dustRunEffectIsActive = false;
         
+    }
+
+    private void OnCollisionEnter(Collision other) {
+        Debug.Log("colission");
+        print("We Hit the " + other.gameObject.name);
+        print("the tag name is Stage ? " + gameObject.CompareTag(Tags.STAGE));
     }
 
 

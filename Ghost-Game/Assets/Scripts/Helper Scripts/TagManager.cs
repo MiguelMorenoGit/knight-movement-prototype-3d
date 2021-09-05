@@ -78,6 +78,7 @@ public class Tags {
     public const string SPEAR_LAUNCH_POSITION = "SpearLaunchPosition";
     public const string PROJECTILE = "Projectile";
 
+    public const string STAGE = "Stage";
 
 }
 

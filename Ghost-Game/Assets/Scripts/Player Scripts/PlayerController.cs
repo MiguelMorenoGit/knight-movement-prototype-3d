@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     
-    //Variables movimiento
+    // Variables publicas
+    public string clipName;
     public float horizontalMove;
     public float verticalMove;
-
-    private Vector3 playerInput;
-
-    public CharacterController player;
     public float playerWalkSpeed;
     public float playerRunSpeed;
     public float playerSpeed;
@@ -24,11 +21,14 @@ public class PlayerController : MonoBehaviour {
     public bool playerIsDoubleJump = false;
     public bool playerIsJumping = false;
     public bool playerIsFalling = false;
+    public float coyoteTime = 2f;
+    public bool coyoteTimeIsActive = false;
+    public bool coyoteTimeCanBeActivated = true;
     public bool dustRunEffectIsActive = false;
     public string mobility = "2D";
-    
-    //Variables movimiento relativo a camara
-    public Camera mainCamera;
+
+    //Variables privadas
+    private Vector3 playerInput;
     private Vector3 camForward;
     private Vector3 camRight;
     private Vector3 movePlayer;
@@ -40,16 +40,16 @@ public class PlayerController : MonoBehaviour {
     // public float slideVelocity;
     // public float slopeForceDown;
 
-    private AnimatorClipInfo[] currentAnimation;
-    private SFX_Playing SFX_Play;
-    public string clipName;
-
-    //Variables Animacion
+    //Instancias publicas
+    public CharacterController player;
     public Animator playerAnimatorController;
-
-    //Instancias Effectos
+    public Camera mainCamera;
     public ParticleSystem DustJumpEffect; 
     public ParticleSystem DustRunEffect; 
+
+    //Instancias privadas
+    private AnimatorClipInfo[] currentAnimation;
+    private SFX_Playing SFX_Play;
 
     // Start is called before the first frame update
     void Start() {
@@ -82,7 +82,8 @@ public class PlayerController : MonoBehaviour {
         playerInput = Vector3.ClampMagnitude(playerInput, 1); // Y limitamos su magnitud a 1 para evitar acelerones en movimientos diagonales
 
         playerAnimatorController.SetFloat(AnimationParameters.WALK_VELOCITY, playerInput.magnitude * playerSpeed);
-
+        
+        // SlideDown();
         // Debug.Log(playerInput.magnitude);
         //Decimos en que direccion mirara el personaje
         CamDirection();
@@ -124,7 +125,7 @@ public class PlayerController : MonoBehaviour {
 
         // Debug.Log(player.velocity.magnitude);
         // Debug.Log(direction);
-        // Debug.Log(player.transform);
+        
         
     }
 
@@ -155,27 +156,29 @@ public class PlayerController : MonoBehaviour {
 
     public void setPlayerSpeed() {
         // RUNNING
-        if (Input.GetKey(KeyCode.LeftShift) && player.isGrounded ) {
+        // if (Input.GetKey(KeyCode.LeftShift) && !playerIsFalling && !playerIsDoubleJump && (fallVelocity >= -5) ) {
+        if (Input.GetKey(KeyCode.LeftShift) && (player.isGrounded || coyoteTimeIsActive) ) {
 
             playerIsRunning = true;
 
             if(playerSpeed < playerRunSpeed) playerSpeed = playerSpeed + 0.2f > playerRunSpeed ? playerRunSpeed : playerSpeed + 0.2f ;  
         }
         // WALKING
-        if (!Input.GetKey(KeyCode.LeftShift) && player.isGrounded ) {
+        // if (!Input.GetKey(KeyCode.LeftShift) && !playerIsFalling && !playerIsDoubleJump && (fallVelocity >= -5) ) {
+        if (!Input.GetKey(KeyCode.LeftShift) && (player.isGrounded || coyoteTimeIsActive)) {
             playerIsRunning = false;
 
             if(playerSpeed > playerWalkSpeed) playerSpeed =  playerSpeed - 0.2f < playerWalkSpeed ? playerWalkSpeed : playerSpeed - 0.2f; 
         }
         // FALLING FROM PLATFORM
-        if (playerIsFalling && (fallVelocity < 0) && !player.isGrounded ) {
+        if (playerIsFalling && (fallVelocity < 0) && !player.isGrounded && !coyoteTimeIsActive ) {
             playerIsFalling = true;
 
             if(playerSpeed > playerWalkSpeed) playerSpeed =  playerSpeed - 1.5f;
             
         }
         // FALLING FROM JUMP
-        if ((playerIsJumping || playerIsDoubleJump) && (fallVelocity < -5) && !player.isGrounded ) {
+        if ((playerIsJumping || playerIsDoubleJump) && (fallVelocity < -5) && !player.isGrounded && !coyoteTimeIsActive ) {
             
             if(playerSpeed > playerWalkSpeed) playerSpeed =  playerSpeed - 0.6f;
             
@@ -187,13 +190,24 @@ public class PlayerController : MonoBehaviour {
     public void PlayerSkills() {
 
         //JUMP from ground
-        if (player.isGrounded && Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.Space) && (player.isGrounded || coyoteTimeIsActive)) {
 
             playerIsJumping = true;
             fallVelocity = jumpForce;
             movePlayer.y = fallVelocity;
 
             playerAnimatorController.SetTrigger(AnimationParameters.JUMP_TRIGGER);
+
+            if(coyoteTimeIsActive) {
+
+                coyoteTimeIsActive = false;
+                playerIsFalling = false;
+                playerIsJumping = true;
+            }
+        }
+        //JUMP FRON COYOTETIME
+        else if (!player.isGrounded && playerIsFalling && !coyoteTimeIsActive && coyoteTimeCanBeActivated) {
+            ActiveCoyoteTime();
         }
         //DOUBLE JUMP from air
         else if (!player.isGrounded && Input.GetKeyDown(KeyCode.Space) && !playerIsDoubleJump && !playerIsFalling && playerIsJumping) {
@@ -210,10 +224,19 @@ public class PlayerController : MonoBehaviour {
             playerIsDoubleJump = false;
             playerIsJumping = false;
         }
+        //HIT UNDER PLATFORM WHEN PLAYER IS JUMPING
+        else if(!player.isGrounded && playerIsJumping && (fallVelocity > 0) && (player.velocity.y == 0f)) {
+            Debug.Log("Debug.Log: colission under platform");
+            print("print: colission under platform " );
+            print("print: colission under platform " );
+            fallVelocity = 0f;
+        }
+        //GROUNDED
         else if (player.isGrounded) {
             playerIsDoubleJump = false;
             playerIsJumping = false;
             playerIsFalling = false;
+            coyoteTimeCanBeActivated = true;
         }
 
         //comprobamos si esta corriendo
@@ -298,9 +321,14 @@ public class PlayerController : MonoBehaviour {
 
     }
 
+    // angulo >= angulo maximo del characterController
     // public void SlideDown() { 
-    //     // angulo >= angulo maximo del characterController
-    //     isOnSlope = Vector3.Angle(Vector3.up, hitNormal) >= player.slopeLimit && Vector3.Angle(Vector3.up, hitNormal) < 89f;
+        
+    //     isOnSlope = (Vector3.Angle(Vector3.up, hitNormal) >= player.slopeLimit) && (Vector3.Angle(Vector3.up, hitNormal) < 89f);
+    //     Debug.Log("Vector3.Angle(Vector3.up, hitNormal) > slope limit" + Vector3.Angle(Vector3.up, hitNormal));
+    //     Debug.Log("player.slopeLimit < 89 ?" + player.slopeLimit);
+    //     Debug.Log("89f" + 89f);
+       
 
     //     if (isOnSlope) {
     //         movePlayer.x += ((1f - hitNormal.y) * hitNormal.x) * slideVelocity;
@@ -314,9 +342,9 @@ public class PlayerController : MonoBehaviour {
     //     hitNormal = hit.normal;
     // }
 
-    private void OnAnimatorMove(){
+    // private void OnAnimatorMove(){
 
-    }
+    // }
 
     private void ActiveDustJumpEffect(){
 
@@ -342,6 +370,19 @@ public class PlayerController : MonoBehaviour {
         dustRunEffectIsActive = true;
         yield return new WaitForSeconds(Random.Range(0.1f,0.3f));
         dustRunEffectIsActive = false;
+        
+    }
+
+    private void ActiveCoyoteTime(){
+        StartCoroutine(coyoteTimeCoroutine());
+    }
+
+    IEnumerator coyoteTimeCoroutine() {
+        
+        coyoteTimeIsActive = true;
+        coyoteTimeCanBeActivated = false;
+        yield return new WaitForSeconds(coyoteTime);
+        coyoteTimeIsActive = false;
         
     }
 

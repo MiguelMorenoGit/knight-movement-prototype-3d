@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.43598595, g: 0.553596, b: 0.54303765, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1948,7 +1948,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: -0.0031415469, y: 0, z: 0, w: 0.99999505}
-  m_LocalPosition: {x: 2.39, y: 1.6373645, z: -9.010466}
+  m_LocalPosition: {x: 2.39, y: 1.9709153, z: -6.152505}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3089,7 +3089,7 @@ Transform:
   m_GameObject: {fileID: 1378918614}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -26.27, y: 0, z: -7.6}
-  m_LocalScale: {x: 50, y: 3, z: 1}
+  m_LocalScale: {x: 50, y: 8.6412, z: 1}
   m_Children: []
   m_Father: {fileID: 777548882}
   m_RootOrder: 1
@@ -3216,7 +3216,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1381099996}
   m_LocalRotation: {x: -0.0031415469, y: 0, z: 0, w: 0.99999505}
-  m_LocalPosition: {x: 2.39, y: 1.6373645, z: -9.010466}
+  m_LocalPosition: {x: 2.39, y: 1.9709153, z: -6.152505}
   m_LocalScale: {x: 1, y: 0, z: 1}
   m_Children:
   - {fileID: 1888001720}
@@ -3666,7 +3666,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1653329330}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -9.8}
   m_LocalScale: {x: 5, y: 1, z: 5}
   m_Children: []
   m_Father: {fileID: 1332716467}
@@ -3766,8 +3766,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746548107}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.19, y: 0, z: 16.92}
-  m_LocalScale: {x: 50, y: 3, z: 1}
+  m_LocalPosition: {x: -2.19, y: 0, z: 15.93}
+  m_LocalScale: {x: 50, y: 8.2554, z: 1}
   m_Children: []
   m_Father: {fileID: 777548882}
   m_RootOrder: 0
@@ -3988,10 +3988,10 @@ MonoBehaviour:
   m_YDamping: 1
   m_ZDamping: 1
   m_ScreenX: 0.5
-  m_ScreenY: 0.663
-  m_CameraDistance: 9
+  m_ScreenY: 0.78343755
+  m_CameraDistance: 6.14
   m_DeadZoneWidth: 0
-  m_DeadZoneHeight: 0
+  m_DeadZoneHeight: 0.02189781
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 1
   m_SoftZoneWidth: 0.8

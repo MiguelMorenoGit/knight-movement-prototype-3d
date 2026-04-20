@@ -10,19 +10,27 @@ The project features a custom 3D character inspired by classic retro action game
 
 ## Demo
 
-- **YouTube Gameplay:** ADD_YOUR_VIDEO_LINK_HERE
-- **GitHub Repository:** ADD_YOUR_GITHUB_LINK_HERE
+- **YouTube Gameplay:** https://www.youtube.com/watch?v=dhQDX7UBZLk
+- **GitHub Repository:** https://github.com/MiguelMorenoGit/knight-movement-prototype-3d.git
 
 ---
 
 ## Screenshots
 
 <p align="center">
-  <img src="./images/readme/gameplay-01.png" width="700" alt="Knight Movement Prototype gameplay screenshot 1">
+  <img src="./Readme Images/Knight Prototype 3D Foto 01.png" width="700" alt="Knight Movement Prototype gameplay screenshot 1">
 </p>
 
 <p align="center">
-  <img src="./images/readme/gameplay-02.png" width="700" alt="Knight Movement Prototype gameplay screenshot 2">
+  <img src="./Readme Images/Knight Prototype 3D Foto 02.png" width="700" alt="Knight Movement Prototype gameplay screenshot 2">
+</p>
+
+<p align="center">
+  <img src="./Readme Images/Knight Prototype 3D Foto 03.png" width="700" alt="Knight Movement Prototype gameplay screenshot 2">
+</p>
+
+<p align="center">
+  <img src="./Readme Images/Knight Prototype 3D Foto 04.png" width="700" alt="Knight Movement Prototype gameplay screenshot 2">
 </p>
 
 ---
@@ -43,6 +51,8 @@ The character is based on the style of **Ghosts ’n Goblins**, recreated in 3D 
 
 Rather than a full game, this project works as a **playable mechanics prototype** used to test ideas, debug movement, and validate the feel of the character in-engine.
 
+Special attention was given to **jump feel and responsiveness**, including features such as **coyote time** to make platforming input more natural and forgiving.
+
 ---
 
 ## Main Features
@@ -50,6 +60,7 @@ Rather than a full game, this project works as a **playable mechanics prototype*
 - Hybrid **2D / 3D movement**
 - Walk and run states
 - Jump and double jump
+- **Coyote time** for more forgiving and responsive jumps
 - Horizontal and vertical spear throwing
 - Dust effects while running and jumping
 - Sound effects for jump, double jump, and spear launch
@@ -96,6 +107,7 @@ At this stage, the project does **not** focus on menus, game over systems, enemy
 - Hybrid 2D / 3D movement design
 - Animation-triggered gameplay actions
 - Basic feedback using particles and sound
+- Attention to **game feel** details such as **coyote time**
 - Early prototyping and gameplay iteration
 
 ---
@@ -104,7 +116,6 @@ At this stage, the project does **not** focus on menus, game over systems, enemy
 
 - Add start menu and game flow
 - Integrate UI and HUD
-- Add enemy behaviours in a separate combat-focused version
 - Improve level layout and environment art
 - Refine camera transitions between 2D and 3D
 - Expand the prototype into a more complete playable demo
@@ -113,7 +124,7 @@ At this stage, the project does **not** focus on menus, game over systems, enemy
 
 ## Credits
 
-**Development:** Miguel Ángel Moreno  
+**Design & Development:** Miguel Ángel Moreno  
 **Character modeling and animations:** Jaime Arenas
 
 - **GitHub:** https://github.com/MiguelMorenoGit

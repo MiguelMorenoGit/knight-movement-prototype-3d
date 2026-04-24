@@ -1,10 +1,10 @@
 # Knight Movement Prototype 3D
 
-**Character movement prototype built with Unity and C#**
+**Responsive character movement prototype built with Unity and C#**
 
-Knight Movement Prototype 3D is a gameplay prototype developed in **Unity with C#** to explore core character controller systems, animation flow, jump behaviour, and hybrid movement between **2D and 3D gameplay**.
+Knight Movement Prototype 3D is a gameplay programming prototype developed in **Unity** using **C#**, focused on designing and testing a responsive character controller with hybrid **2D / 3D movement**, jump behaviour, directional actions, animation flow and player feedback.
 
-The project features a custom 3D character inspired by classic retro action games, focused on testing responsiveness, movement, jumps, directional spear throwing, and general gameplay feel inside a simple blockout environment.
+The goal of this project is not to build a full game, but to explore how small gameplay details — such as movement responsiveness, coyote time, jump timing, animation transitions, particles and sound feedback — can improve the feel of a playable character inside a simple prototype environment.
 
 ---
 
@@ -37,7 +37,7 @@ The project features a custom 3D character inspired by classic retro action game
 
 ## About the Project
 
-This prototype was created as a practical exercise to better understand gameplay programming in Unity and to improve our workflow around:
+This prototype was created as a practical exercise to better understand gameplay programming in Unity and to improve my workflow around:
 
 - **Character controller systems**
 - **2D and 3D movement logic**
@@ -47,24 +47,29 @@ This prototype was created as a practical exercise to better understand gameplay
 - **Particle and sound feedback**
 - **Gameplay feel and iteration**
 
-The character is based on the style of **Ghosts ’n Goblins**, recreated in 3D with model and animations by **Jaime Arenas**.
+The character is inspired by the visual style of **Ghosts ’n Goblins**, recreated in 3D with model and animations by **Jaime Arenas**.
 
 Rather than a full game, this project works as a **playable mechanics prototype** used to test ideas, debug movement, and validate the feel of the character in-engine.
 
 Special attention was given to **jump feel and responsiveness**, including features such as **coyote time** to make platforming input more natural and forgiving.
 
+This project reflects my interest in **gameplay programming**, especially player controllers, responsive movement and game feel.
+
 ---
 
 ## Main Features
 
-- Hybrid **2D / 3D movement**
-- Walk and run states
-- Jump and double jump
-- **Coyote time** for more forgiving and responsive jumps
+- Hybrid **2D / 3D movement system**
+- Walk and run movement states
+- Jump and double jump mechanics
+- **Coyote time** for more responsive and forgiving platforming
 - Horizontal and vertical spear throwing
-- Dust effects while running and jumping
-- Sound effects for jump, double jump, and spear launch
-- Simple platform blockout for movement and jump testing
+- Directional input for attack behaviour
+- Animation integration for movement and actions
+- Dust particle effects while running and jumping
+- Sound effects for jump, double jump and spear launch
+- Simple blockout environment for movement and jump testing
+- Runtime switch between 2D and 3D movement modes
 
 ---
 
@@ -87,38 +92,58 @@ Special attention was given to **jump feel and responsiveness**, including featu
 - **Animation System**
 - **Particle Systems**
 - **Audio Sources**
+- **Git & GitHub**
 
 ---
 
 ## Project Purpose
 
-This is not a full game or vertical slice.  
-It is a **gameplay prototype** built to practice and validate core mechanics such as movement, jumping, directional actions, animation response, and player feedback.
+This is not a full game or vertical slice.
 
-At this stage, the project does **not** focus on menus, game over systems, enemy design, or a complete gameplay loop.
+It is a focused **gameplay prototype** built to practice, test and validate core character mechanics such as movement, jumping, directional actions, animation response and player feedback.
+
+The purpose of the project was to explore how a character controller can feel more responsive through small gameplay programming decisions, such as:
+
+- Adjusting movement responsiveness
+- Supporting different movement contexts
+- Improving jump forgiveness with coyote time
+- Connecting animation and gameplay actions
+- Adding audiovisual feedback to reinforce player input
+
+At this stage, the project does **not** focus on menus, game over states, enemy design, UI, progression systems or a complete gameplay loop. The scope is intentionally limited in order to focus on the feel and behaviour of the playable character.
 
 ---
 
 ## What This Prototype Demonstrates
 
-- Understanding of Unity gameplay scripting
+This project demonstrates my ability to prototype and implement core gameplay systems in Unity, especially around player control and game feel.
+
+Key areas demonstrated:
+
+- Unity gameplay scripting with C#
 - Character locomotion setup
-- State-driven jump logic
 - Hybrid 2D / 3D movement design
-- Animation-triggered gameplay actions
-- Basic feedback using particles and sound
-- Attention to **game feel** details such as **coyote time**
-- Early prototyping and gameplay iteration
+- Jump and double jump logic
+- State-driven jump behaviour
+- Coyote time implementation
+- Directional action input
+- Animation-driven gameplay behaviour
+- Integration of particles and sound feedback
+- Early-stage gameplay iteration and debugging
+- Awareness of player responsiveness and game feel
 
 ---
 
 ## Possible Next Steps
 
-- Add start menu and game flow
-- Integrate UI and HUD
-- Improve level layout and environment art
-- Refine camera transitions between 2D and 3D
-- Expand the prototype into a more complete playable demo
+- Add a small challenge room to test movement under pressure
+- Add basic enemy interactions to validate combat and positioning
+- Refine camera behaviour during 2D / 3D transitions
+- Improve level design with more intentional platforming sections
+- Expand the movement system with dash, ledge grab or wall interaction
+- Add hit reactions and collision feedback for spear impacts
+- Improve visual polish while keeping the prototype gameplay-focused
+- Package the prototype as a small playable demo
 
 ---
 
@@ -134,4 +159,6 @@ At this stage, the project does **not** focus on menus, game over systems, enemy
 
 ## Portfolio Note
 
-This project is part of my game development portfolio and showcases my ability to prototype responsive movement systems, hybrid gameplay perspectives, jump mechanics, animation-driven behaviour, and player feedback in Unity.
+This project is part of my game development portfolio and represents my interest in **gameplay programming**, especially character controllers, movement systems, player responsiveness, hybrid gameplay perspectives, animation-driven behaviour and game feel.
+
+It showcases my ability to build focused prototypes, test gameplay mechanics in-engine and communicate the technical and design purpose behind a playable system.
